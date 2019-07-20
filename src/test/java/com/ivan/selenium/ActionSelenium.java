@@ -106,12 +106,22 @@ public class ActionSelenium {
         button.click();
     }
 
+    public void webForm(){
+        //拼接测试，API 拼接 test
+        driver.get("xxxxxxxxx");
+        driver.findElement(By.id("signup-form")).submit();
+    }
+
     public static void main(String[] args){
 
         ActionSelenium actionSelenium = new ActionSelenium();
         actionSelenium.InitDriver();
-        actionSelenium.checkBox();
-        actionSelenium.button();
+        //actionSelenium.checkBox();
+        actionSelenium.inputBox();
+        actionSelenium.webForm();
+        
+        actionSelenium.webForm();
+        //actionSelenium.button();
         //actionSelenium.inputBox();
         //actionSelenium.radioBox();
     }
