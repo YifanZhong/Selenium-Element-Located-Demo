@@ -95,11 +95,23 @@ public class ActionSelenium {
         check.click();
     }
 
+    /**
+     * 按钮
+     * button
+     */
+    public void button(){
+        WebElement button = driver.findElement(By.className("moco-btn"));
+        System.out.println(button.isEnabled());
+        System.out.println(button.getAttribute("value"));
+        button.click();
+    }
+
     public static void main(String[] args){
 
         ActionSelenium actionSelenium = new ActionSelenium();
         actionSelenium.InitDriver();
         actionSelenium.checkBox();
+        actionSelenium.button();
         //actionSelenium.inputBox();
         //actionSelenium.radioBox();
     }
