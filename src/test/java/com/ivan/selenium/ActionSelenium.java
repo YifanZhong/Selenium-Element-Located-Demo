@@ -68,10 +68,6 @@ public class ActionSelenium {
             }
         }
 
-
-
-
-
         try {
             Thread.sleep(4000);
         } catch (InterruptedException e) {
@@ -80,11 +76,31 @@ public class ActionSelenium {
 
     }
 
+    /**
+     * 多选框
+     * checkBox
+     */
+    public void checkBox(){
+        WebElement check = driver.findElement(By.id("auto-signin"));
+        System.out.println("isSelected? " + check.isSelected());
+        System.out.println("isEnabled? "+ check.isEnabled());
+        //check.clear();
+
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        check.click();
+    }
+
     public static void main(String[] args){
 
         ActionSelenium actionSelenium = new ActionSelenium();
         actionSelenium.InitDriver();
-        actionSelenium.inputBox();
-        actionSelenium.radioBox();
+        actionSelenium.checkBox();
+        //actionSelenium.inputBox();
+        //actionSelenium.radioBox();
     }
 }
