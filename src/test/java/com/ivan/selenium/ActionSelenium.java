@@ -154,9 +154,21 @@ public class ActionSelenium {
         WebElement job = formElement.findElement(By.id("job"));
         Select downList = new Select(job);
         //one of them;
+        /*
         downList.selectByIndex(2);
         downList.selectByValue("18");
         downList.selectByVisibleText("学生");
+
+
+        downList.deselectAll();
+        downList.deselectByIndex(2);
+        downList.deselectByValue("");
+        downList.deselectByVisibleText("");
+        */
+
+        downList.selectByIndex(3);
+        System.out.println(downList.isMultiple());
+        downList.deselectByIndex(3);
 
 
     }
