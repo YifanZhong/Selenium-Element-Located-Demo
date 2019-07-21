@@ -1,11 +1,14 @@
 package com.ivan.selenium;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.List;
+
+import static java.lang.Thread.*;
 
 public class ActionSelenium {
 
@@ -22,7 +25,7 @@ public class ActionSelenium {
     public void inputBox(){
         driver.findElement(By.name("email")).sendKeys("ivanzhong0310@gmail.com");
         try {
-            Thread.sleep(2000);
+            sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -32,10 +35,10 @@ public class ActionSelenium {
 
         //preparing for radioBox
         driver.findElement(By.name("email")).sendKeys("ivanzhong0310@gmail.com");
-        driver.findElement(By.name("password")).sendKeys("aaaaaaaa");
+        driver.findElement(By.name("password")).sendKeys("aaaaaaaaa");
         driver.findElement(By.className("moco-btn")).click();
         try {
-            Thread.sleep(4000);
+            sleep(4000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -53,7 +56,7 @@ public class ActionSelenium {
         System.out.println(elements.size());
 
         try {
-            Thread.sleep(2000);
+            sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -69,7 +72,7 @@ public class ActionSelenium {
         }
 
         try {
-            Thread.sleep(4000);
+            sleep(4000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -87,7 +90,7 @@ public class ActionSelenium {
         //check.clear();
 
         try {
-            Thread.sleep(4000);
+            sleep(4000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -112,17 +115,40 @@ public class ActionSelenium {
         driver.findElement(By.id("signup-form")).submit();
     }
 
+
+    public void upFile(){
+        driver.get("https://www.imooc.com/user/setbindsns");
+        try {
+            sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        String jsString = "document.getElementsByClassName(\"update-avator\")[0].style.bottom='0';";
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript(jsString);
+        try {
+            sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //driver.findElement(By.className("js-avator-link")).click();
+        driver.findElement(By.className("update-avator")).click();
+        driver.findElement(By.id("upload")).sendKeys("/Users/aaa./Documents/7.jpeg");
+
+    }
+
     public static void main(String[] args){
 
         ActionSelenium actionSelenium = new ActionSelenium();
         actionSelenium.InitDriver();
         //actionSelenium.checkBox();
         actionSelenium.inputBox();
-        actionSelenium.webForm();
-        
-        actionSelenium.webForm();
+        //actionSelenium.webForm();
+
+        //actionSelenium.webForm();
         //actionSelenium.button();
         //actionSelenium.inputBox();
         //actionSelenium.radioBox();
+        actionSelenium.upFile();
     }
 }
