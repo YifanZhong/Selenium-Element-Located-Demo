@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class ActionSelenium {
 
         //preparing for radioBox
         driver.findElement(By.name("email")).sendKeys("ivanzhong0310@gmail.com");
-        driver.findElement(By.name("password")).sendKeys("aaaaaaaaa");
+        driver.findElement(By.name("password")).sendKeys("aaaaaaaa");
         driver.findElement(By.className("moco-btn")).click();
         try {
             sleep(4000);
@@ -137,6 +138,29 @@ public class ActionSelenium {
 
     }
 
+    /**
+     * 下拉框操作
+     */
+    public void downSelectBox(){
+        driver.get("https://www.imooc.com/user/setprofile");
+        driver.findElement(By.className("pull-right")).click();
+        try {
+            sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        WebElement formElement = driver.findElement(By.id("profile"));
+
+        WebElement job = formElement.findElement(By.id("job"));
+        Select downList = new Select(job);
+        //one of them;
+        downList.selectByIndex(2);
+        downList.selectByValue("18");
+        downList.selectByVisibleText("学生");
+
+
+    }
+
     public static void main(String[] args){
 
         ActionSelenium actionSelenium = new ActionSelenium();
@@ -149,6 +173,7 @@ public class ActionSelenium {
         //actionSelenium.button();
         //actionSelenium.inputBox();
         //actionSelenium.radioBox();
-        actionSelenium.upFile();
+        //actionSelenium.upFile();
+        actionSelenium.downSelectBox();
     }
 }
