@@ -167,8 +167,15 @@ public class ActionSelenium {
         */
 
         downList.selectByIndex(3);
-        System.out.println(downList.isMultiple());
-        downList.deselectByIndex(3);
+        //System.out.println(downList.isMultiple());
+        //downList.deselectByIndex(3);
+        List<WebElement> List = downList.getAllSelectedOptions();
+        for (WebElement option:List){
+            System.out.println(option.getText());
+        }
+        System.out.println(downList.getFirstSelectedOption().getText());
+
+
 
 
     }
