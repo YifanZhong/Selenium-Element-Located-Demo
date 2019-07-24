@@ -19,8 +19,8 @@ public class ActionSelenium {
     public void InitDriver(){
         System.setProperty("webdriver.chrome.driver","chromedriver");
         driver = new ChromeDriver();
-        //driver.get("https://www.imooc.com/user/newlogin/from_url/");
-        driver.get("https://www.imooc.com");
+        driver.get("https://www.imooc.com/user/newlogin/from_url/");
+        //driver.get("https://www.imooc.com");
         driver.manage().window().maximize();
 
     }
@@ -208,12 +208,23 @@ public class ActionSelenium {
 
     }
 
+    /**
+     * iframe Switch
+     */
+    public void iframe(){
+        driver.get("https://www.imooc.com/wiki/create");
+        WebElement iframeElement = driver.findElement(By.id("ueditor_0"));
+        driver.switchTo().frame(iframeElement);
+        driver.findElement(By.tagName("body")).sendKeys("This is a test!");
+
+    }
+
     public static void main(String[] args){
 
         ActionSelenium actionSelenium = new ActionSelenium();
         actionSelenium.InitDriver();
         //actionSelenium.checkBox();
-        //actionSelenium.inputBox();
+        actionSelenium.inputBox();
         //actionSelenium.webForm();
 
         //actionSelenium.webForm();
@@ -222,6 +233,7 @@ public class ActionSelenium {
         //actionSelenium.radioBox();
         //actionSelenium.upFile();
         //actionSelenium.downSelectBox();
-        actionSelenium.mouseAction();
+        //actionSelenium.mouseAction();
+        actionSelenium.iframe();
     }
 }
