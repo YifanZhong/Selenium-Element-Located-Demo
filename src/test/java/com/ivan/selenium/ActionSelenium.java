@@ -9,18 +9,20 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
+import java.util.Set;
 
 import static java.lang.Thread.*;
 
 public class ActionSelenium {
 
     public WebDriver driver;
+    public String windowsHandle;
 
     public void InitDriver(){
         System.setProperty("webdriver.chrome.driver","chromedriver");
         driver = new ChromeDriver();
-        driver.get("https://www.imooc.com/user/newlogin/from_url/");
-        //driver.get("https://www.imooc.com");
+        //driver.get("https://www.imooc.com/user/newlogin/from_url/");
+        driver.get("https://www.imooc.com");
         driver.manage().window().maximize();
 
     }
@@ -204,6 +206,7 @@ public class ActionSelenium {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        windowsHandle = driver.getWindowHandle();
         driver.findElement(By.linkText("HTML/CSS")).click();
 
     }
@@ -219,12 +222,28 @@ public class ActionSelenium {
 
     }
 
+    /**
+     *
+     * windowsHandle
+     */
+    public void windowsHandle(){
+        Set<String> handles = driver.getWindowHandles();
+        for (String s:handles){
+            if (s.equals(windowsHandle)){
+                continue;
+            }
+            System.out.println(s);
+            driver.switchTo().window(s);
+        }
+        driver.findElement(By.linkText("初级")).click();
+    }
+
     public static void main(String[] args){
 
         ActionSelenium actionSelenium = new ActionSelenium();
         actionSelenium.InitDriver();
         //actionSelenium.checkBox();
-        actionSelenium.inputBox();
+        //actionSelenium.inputBox();
         //actionSelenium.webForm();
 
         //actionSelenium.webForm();
@@ -233,7 +252,8 @@ public class ActionSelenium {
         //actionSelenium.radioBox();
         //actionSelenium.upFile();
         //actionSelenium.downSelectBox();
-        //actionSelenium.mouseAction();
-        actionSelenium.iframe();
+        actionSelenium.mouseAction();
+        //actionSelenium.iframe();
+        actionSelenium.windowsHandle();
     }
 }
