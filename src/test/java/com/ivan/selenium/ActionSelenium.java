@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
@@ -18,7 +19,8 @@ public class ActionSelenium {
     public void InitDriver(){
         System.setProperty("webdriver.chrome.driver","chromedriver");
         driver = new ChromeDriver();
-        driver.get("https://www.imooc.com/user/newlogin/from_url/");
+        //driver.get("https://www.imooc.com/user/newlogin/from_url/");
+        driver.get("https://www.imooc.com");
         driver.manage().window().maximize();
 
     }
@@ -175,8 +177,34 @@ public class ActionSelenium {
         }
         System.out.println(downList.getFirstSelectedOption().getText());
 
+    }
 
-
+    /**
+     * 鼠标事件
+     */
+    public void mouseAction(){
+        //WebElement login = driver.findElement(By.id("js-signin-btn"));
+        //WebElement login = driver.findElement(By.id("a"));
+        WebElement login = driver.findElement(By.className("menuContent"));
+        List<WebElement> item = login.findElements(By.className("item"));
+        Actions actions = new Actions(driver);
+        //actions.click(login).perform();
+        /*
+        actions.doubleClick(login).perform();
+        try {
+            sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        actions.contextClick(login).perform();
+        */
+        actions.moveToElement(item.get(1)).perform();
+        try {
+            sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        driver.findElement(By.linkText("HTML/CSS")).click();
 
     }
 
@@ -185,7 +213,7 @@ public class ActionSelenium {
         ActionSelenium actionSelenium = new ActionSelenium();
         actionSelenium.InitDriver();
         //actionSelenium.checkBox();
-        actionSelenium.inputBox();
+        //actionSelenium.inputBox();
         //actionSelenium.webForm();
 
         //actionSelenium.webForm();
@@ -193,6 +221,7 @@ public class ActionSelenium {
         //actionSelenium.inputBox();
         //actionSelenium.radioBox();
         //actionSelenium.upFile();
-        actionSelenium.downSelectBox();
+        //actionSelenium.downSelectBox();
+        actionSelenium.mouseAction();
     }
 }
