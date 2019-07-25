@@ -6,10 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.*;
 
@@ -238,6 +241,18 @@ public class ActionSelenium {
         driver.findElement(By.linkText("初级")).click();
     }
 
+    /**
+     * waiting
+     */
+    public void waitforElement(){
+        //隐式等待
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        //显式等待
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("test")));
+
+    }
+
     public static void main(String[] args){
 
         ActionSelenium actionSelenium = new ActionSelenium();
@@ -252,8 +267,9 @@ public class ActionSelenium {
         //actionSelenium.radioBox();
         //actionSelenium.upFile();
         //actionSelenium.downSelectBox();
-        actionSelenium.mouseAction();
+        //actionSelenium.mouseAction();
         //actionSelenium.iframe();
-        actionSelenium.windowsHandle();
+        //actionSelenium.windowsHandle();
+        actionSelenium.waitforElement();
     }
 }
